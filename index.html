@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <navbar>
+            <div class="logo">
+                <p>Expenses Tracker Web App</p>
+            </div>
+            <div>
+                <button>Logout</button>
+            </div>
+        </navbar>
+    </div>
+    <div>
+        <h2>Add catergory</h2>
+        <form id="add-category-form">
+            <input type="text" placeholder="category name">
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Categories</h2>
+        <ul id="categories"></ul>
+    </div>
+
+    <div>
+        <h2>Add expense</h2>
+        <form id="add-expense-form">
+            <input type="text" name="expenseName" placeholder="expense name">
+            <input type="number" name="expenseAmount" placeholder="amount">
+            <select name="expenseCategory" id="category"></select>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <div>
+        <h2>Expenses</h2>
+        <ul id="expenses"></ul>
+    </div>
+
+</body>
+<script src="index.js"></script>
+</html>
