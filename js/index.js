@@ -1,18 +1,18 @@
 import { populateExpenses } from "./updateData.js"
 
-let type = ["Expense", "Income", "Investment"]
+let type = ["Expense", "Income", "Investment", "Saving"]
 
-let catergory = JSON.parse(localStorage.getItem("categories")) || ["Food", "Transport", "Utilities"] 
+let catergory = JSON.parse(localStorage.getItem("categories")) || ["🍔 Food", "🚗 Transport", "🔌 Utilities"] 
 
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [
-    { name: "Groceries", amount: 50, category: "Food", type: type[0], date: new Date().toLocaleDateString() }, // Today
-    { name: "Bus Ticket", amount: 2.5, category: "Transport", type: type[0], date: new Date().toLocaleDateString() }, // Today
-    { name: "Electricity Bill", amount: 100, category: "Utilities", type: type[0], date: new Date().toLocaleDateString() }, // Today
-    { name: "Dinner", amount: 30, category: "Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
-    { name: "Dinner", amount: 30, category: "Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
-    { name: "Coffee", amount: 5, category: "Food", type: type[0], date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // 6 days ago
-    { name: "Books", amount: 20, category: "Education", type: type[0], date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // 5 days ago
-    { name: "Lunch", amount: 15, category: "Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
+    { name: "Groceries", amount: 50, category: "🍔 Food", type: type[0], date: new Date().toLocaleDateString() }, // Today
+    { name: "Bus Ticket", amount: 2.5, category: "🚗 Transport", type: type[0], date: new Date().toLocaleDateString() }, // Today
+    { name: "Electricity Bill", amount: 100, category: "🔌 Utilities", type: type[0], date: new Date().toLocaleDateString() }, // Today
+    { name: "Dinner", amount: 30, category: "🍔 Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
+    { name: "Dinner", amount: 30, category: "🍔 Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
+    { name: "Coffee", amount: 5, category: "🍔 Food", type: type[0], date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // 6 days ago
+    { name: "Books", amount: 20, category: "🎓 Education", type: type[0], date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // 5 days ago
+    { name: "Lunch", amount: 15, category: "🍔 Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
 ]
 
 
