@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tailwindCheatSheet.css">
+</head>
+<body>
+    <div class="main-content">
+        <div id="tab1" class="tab-content active">
+            <div class="flex flex-col">
+                <div>
+                    <div class="w-full flex flex-col mb-4">
+                        <h2 class="p-0 m-0">Transactions</h2>
+                        <p class="p-0 m-0 text-sm text-gray-500">You had 12 transactions this month</p>
+                    </div>
+
+                    <div class="flex flex-col" style="gap: 10px;">
+                        <div class="flex flex-col ">
+                            <p class="text-sm text-gray-500 mb-3 font-medium">Today</p>
+                            <div id="today-expenses" class="flex flex-col" style="padding: 10px;">
+
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <p class="text-sm text-gray-500 mb-3 font-medium">Yesterday</p>
+                            <div id="yesterday-expenses" class="flex flex-col" style="padding: 10px;">
+
+
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <p class="text-sm text-gray-500 mb-3 font-medium">Last 7 days</p>
+                            <div id="last-7-days" class="flex flex-col" style="padding: 10px;">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    const todayContainer = document.getElementById('today-expenses');
+    const yesterdayContainer = document.getElementById('yesterday-expenses');
+    const last7DaysContainer = document.getElementById('last-7-days');
+    const expenses = JSON.parse(localStorage.getItem("expenses"))
+     const populateExpenses = (expenses) => {
+    todayContainer.innerHTML = '';
+    yesterdayContainer.innerHTML = '';
+    last7DaysContainer.innerHTML = '';
+    const today = new Date();
+    const todayString = today.toLocaleDateString();
+    const yesterdayString = new Date(today.setDate(today.getDate() - 1)).toLocaleDateString();
+
+    const todayExpenses = expenses.filter(expense => expense.date === todayString)
+ 
+    todayExpenses.forEach(expense => {
+        const expenseElement = createExpenseElement(expense);
+        todayContainer.appendChild(expenseElement);
+
+    });
+
+ 
+
+    const yesterdayExpenses = expenses.filter(expense => expense.date === yesterdayString);
+
+    yesterdayExpenses.forEach(expense => {
+        const expenseElement = createExpenseElement(expense);
+        yesterdayContainer.appendChild(expenseElement);
+    });
+
+ 
+
+    const last7DaysExpenses = expenses.filter(expense => {
+        const expenseDate = new Date(expense.date);
+        const today = new Date();
+        const yesterday = new Date(today.setDate(today.getDate() - 2));
+        return expenseDate < yesterday && (new Date() - expenseDate) / (1000 * 60 * 60 * 24) <= 7; 
+    });
+
+    last7DaysExpenses.forEach(expense => {
+        const expenseElement = createExpenseElement(expense);
+        last7DaysContainer.appendChild(expenseElement); 
+    });
+
+}
+
+    function createExpenseElement(expense) {
+        const expenseElement = document.createElement('div');
+        expenseElement.className = 'flex flex-row justify-between items-center';
+        expenseElement.style.padding = '10px';
+        expenseElement.innerHTML = `
+        <p class="font-medium w-1/4 text-start">${expense.name}</p>
+        <div class="w-1/4 text-start flex">
+            <p style="border: 1px solid #ccc;padding: 3px 15px;border-radius: 9999px;" class="font-medium text-sm">${expense.category}</p>
+        </div>
+        <p class="text-gray-500 w-1/4 text-start">${expense.type}</p>
+        <p class="font-medium w-1/4 text-end ${expense.type === "Expense" ? "text-red-500" : "text-green-500"}">${expense.type === "Expense" ? "-" : "+"} ${expense.amount}€</p>
+    `;
+
+        return expenseElement;
+    }
+
+    populateExpenses(expenses)
+</script>
+</html>

@@ -2,17 +2,19 @@ import { populateExpenses } from "./updateData.js"
 
 let type = ["Expense", "Income", "Investment"]
 
-let catergory = ["Food", "Transport", "Utilities"] 
+let catergory = JSON.parse(localStorage.getItem("categories")) || ["Food", "Transport", "Utilities"] 
 
-let expenses = [
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [
     { name: "Groceries", amount: 50, category: "Food", type: type[0], date: new Date().toLocaleDateString() }, // Today
     { name: "Bus Ticket", amount: 2.5, category: "Transport", type: type[0], date: new Date().toLocaleDateString() }, // Today
     { name: "Electricity Bill", amount: 100, category: "Utilities", type: type[0], date: new Date().toLocaleDateString() }, // Today
+    { name: "Dinner", amount: 30, category: "Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
     { name: "Dinner", amount: 30, category: "Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
     { name: "Coffee", amount: 5, category: "Food", type: type[0], date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // 6 days ago
     { name: "Books", amount: 20, category: "Education", type: type[0], date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // 5 days ago
     { name: "Lunch", amount: 15, category: "Food", type: type[0], date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toLocaleDateString() }, // Yesterday
 ]
+
 
 document.getElementById("type").innerHTML = type.map(type => `<option value="${type}">${type}</option>`).join('')
 document.getElementById("category").innerHTML = catergory.map(category => `<option value="${category}">${category}</option>`).join('')
@@ -32,6 +34,7 @@ document.getElementById("add-category-form").addEventListener("submit", function
     option.value = category
     document.querySelector("#category").appendChild(option)
     console.log(catergory)
+    localStorage.setItem("categories", JSON.stringify(catergory))
 })
 
 document.getElementById("add-expense-form").addEventListener("submit", function(e) {
@@ -54,7 +57,10 @@ document.getElementById("add-expense-form").addEventListener("submit", function(
         li.textContent = `${expenses[i].name} - ${expenses[i].amount} - ${expenses[i].category} - ${expenses[i].date}`
     }
     document.querySelector("#expenses").appendChild(li)
+    console.log(expenses[expenses.length - 1])
     populateExpenses(expenses)
+
+    localStorage.setItem("expenses", JSON.stringify(expenses))
 })
 
 
