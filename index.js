@@ -75,4 +75,5 @@ window.openTab = function(tabId) {
       event.target.classList.add('active');
 }
 
+
 populateExpenses(expenses)
