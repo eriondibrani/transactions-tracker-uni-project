@@ -42,6 +42,10 @@
     color: #8B5CF6 !important;
 }
 
+.text-white-500 {
+    color: #fff !important;
+}
+
 .text-blue-500 {
     color: #3B82F6 !important;
 }
@@ -137,7 +141,12 @@
 .p-4 {
     padding: 1rem !important;
 }
-
+.p-5 {
+    padding: 1.5rem !important;
+}
+.p-6 {
+    padding: 2rem !important;
+}
 .mt-1 {
     margin-top: 0.25rem !important;
 }
