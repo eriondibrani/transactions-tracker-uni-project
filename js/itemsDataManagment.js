@@ -14,6 +14,11 @@ let currentPage = 1;
 const populateExpenses = (expenses, currentPage) => {
     dataContainer.innerHTML = '';
 
+    const transactionsCount = document.getElementById('transactions-count');
+    transactionsCount.innerText = `You had ${expenses.length} transactions this month`;
+
+    expenses.length === 0 && dataContainer.appendChild(noExpenses());
+
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
 
@@ -24,7 +29,23 @@ const populateExpenses = (expenses, currentPage) => {
         dataContainer.appendChild(expenseElement);
     });
 
+    
+
     updatePagination(expenses.length === 0 ? 1 : expenses.length, currentPage);
+}
+
+const noExpenses = () => {
+    const expenseElement = document.createElement('div');
+    expenseElement.className = `flex justify-center items-center `;
+    expenseElement.style.height = '100%';
+    expenseElement.style.width = '100%';
+    expenseElement.style.alignItems = 'center';
+
+    expenseElement.innerHTML = `
+    <p class="text-gray-500 text-start text-sm ">No data found 💔</p>
+    `;
+
+    return expenseElement;
 }
 
 const updatePagination = (totalItems, currentPage) => {
@@ -89,9 +110,19 @@ populateExpenses(expenses, currentPage);
 
 window.filterData = function(filterByDate){
     expenses = filterDataByCategory(expensesData, activeFilterCategory);
+    expenses = filterDataByType(expenses, activeFilterType);
     const filteredData = filterDataByDate(expenses, filterByDate);
     activeFilterDate = filterByDate;
     expenses = filteredData;
+
+    const button = document.getElementById(filterByDate);
+
+    document.querySelectorAll(".filter-button").forEach((btn) => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
     populateExpenses(expenses, currentPage);
 }
 
@@ -138,6 +169,7 @@ populateFilterOptions();
 document.getElementById("filter-category").addEventListener("change", function(){
     const err = document.getElementById("filter-category").value;
     expenses = filterDataByDate(expensesData, activeFilterDate);
+    expenses = filterDataByType(expenses, activeFilterType);
     console.log(expenses, activeFilterDate, err)
     const filteredData = filterDataByCategory(expenses, err);
     activeFilterCategory = err;
@@ -147,7 +179,9 @@ document.getElementById("filter-category").addEventListener("change", function()
 
 document.getElementById("filter-type").addEventListener("change", function(){
     const err = document.getElementById("filter-type").value;
-    expenses = filterDataByType(expensesData, err);
+    expenses = filterDataByCategory(expensesData, activeFilterCategory);
+    expenses = filterDataByDate(expenses, activeFilterDate);
+    expenses = filterDataByType(expenses, err);
     activeFilterType = err;
     populateExpenses(expenses, currentPage);
 })

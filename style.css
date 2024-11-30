@@ -140,3 +140,7 @@ h3{
     color: white;
 }
 
+.filter-button.active{
+    background-color: #9f9e9e;
+    color: white;
+}

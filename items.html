@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div style="height: 100vh; display: flex; flex-direction: column; width: 100vw;">
+    <div style="height: 100vh; display: flex; flex-direction: column; width: 100%;">
         <navbar style="height: 5%;">
             <div class="logo">
                 <p>Expenses Tracker Web App</p>
@@ -29,15 +29,15 @@
                             <div class="flex justify-center items-center">
                             <div class="w-full flex flex-col mb-4 w-1/4">
                                 <h2 class="p-0 m-0">Transactions</h2>
-                                <p class="p-0 m-0 text-sm text-gray-500">You had 12 transactions this month</p>
+                                <p id="transactions-count" class="p-0 m-0 text-sm text-gray-500">You had 12 transactions this month</p>
                             </div>
 
                             <div class="flex justify-end items-center w-3/4">
                                 <div class="mr-4">
-                                    <button class="filter-button" id="filter-all" onclick="filterData('all')">All</button>
-                                    <button class="filter-button" id="filter-today" onclick="filterData('today')">Today</button>
-                                    <button class="filter-button" id="filter-yesterday" onclick="filterData('yesterday')">Yesterday</button>
-                                    <button class="filter-button" id="filter-last-7-days" onclick="filterData('last7Days')">Last 7 Days</button>
+                                    <button class="filter-button" id="all" onclick="filterData('all')">All</button>
+                                    <button class="filter-button" id="today" onclick="filterData('today')">Today</button>
+                                    <button class="filter-button" id="yesterday" onclick="filterData('yesterday')">Yesterday</button>
+                                    <button class="filter-button" id="last7Days" onclick="filterData('last7Days')">Last 7 Days</button>
                                 </div>
                                 <p class="text-gray-500 text-sm">Filter by:</p>
                                 <select id="filter-category" class="text-gray-500 text-sm">
