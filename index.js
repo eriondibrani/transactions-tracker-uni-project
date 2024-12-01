@@ -76,4 +76,18 @@ window.openTab = function(tabId) {
 }
 
 
+
+
+window.onload = function () {
+    const sessionData = JSON.parse(localStorage.getItem('sessionToken'));
+
+    if (!sessionData || new Date().getTime() > sessionData.expires) {
+        localStorage.removeItem('sessionToken'); 
+        window.location.href = 'login.html'; 
+    } else {
+        console.log('i logun hala osht'); 
+    }
+};
+
+
 populateExpenses(expenses)
