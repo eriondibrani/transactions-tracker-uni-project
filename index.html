@@ -10,10 +10,11 @@
 </head>
 
 <body>
-    <div style="height: 100vh; display: flex; flex-direction: column; width: 100vw;">
+    <div style="height: 100vh; display: flex; flex-direction: column; width: 100%;">
         <navbar style="height: 5%;">
             <div class="logo">
-                <p>Expenses Tracker Web App</p>
+                <a href="index.html" class="text-white" style="text-decoration: none; color: #ffffff;">Expenses Tracker Web App</a>
+
             </div>
             <div>
                 <button type="submit" id="logout-button"  class="logout-button bg-main-red p-2">
@@ -26,9 +27,9 @@
         <div class="justify-center" style="display: flex; flex-direction: row; width: 100%;">
             <div class="" style="height: 95%; display: flex; flex-direction: column; width: 70%;">
                 <div class="side-tabs rounded shadow">
-                    <button class="tab-btn active" onclick="openTab('tab1')">Expenses</button>
-                    <button class="tab-btn" onclick="openTab('tab2')">Add Expenses</button>
-                    <button class="tab-btn" onclick="openTab('tab3')">Add Category of Expenses</button>
+                    <button class="tab-btn active" onclick="openTab('tab1')">Home</button>
+                    <button class="tab-btn" onclick="openTab('tab2')">Add Transaction</button>
+                    <button class="tab-btn" onclick="openTab('tab3')">Add Category of Transaction</button>
                 </div>
 
                 <div class="main-content">
@@ -74,7 +75,7 @@
                             <div>
                                 <div class="w-full flex flex-col mb-4">
                                     <h2 class="p-0 m-0">Transactions</h2>
-                                    <p class="p-0 m-0 text-sm text-gray-500">You had 12 transactions this month</p>
+                                    <p id="transactions-count" class="p-0 m-0 text-sm text-gray-500">You had 12 transactions this month</p>
                                 </div>
 
                                 <div class="flex flex-col" style="gap: 10px;">
@@ -105,7 +106,7 @@
                     </div>
                     <div id="tab2" class="tab-content">
                         <div>
-                            <h2 class="mb-4">Add expense</h2>
+                            <h2 class="mb-4">Add Transaction</h2>
                             <form id="add-expense-form" class="shadow rounded flex flex-row mb-4">
                                 <input type="text" name="expenseName" placeholder="Expense name" class="add-expense-input-style">
                                 <input type="number" name="expenseAmount" placeholder="Amount" class="add-expense-input-style">
@@ -119,7 +120,7 @@
                     </div>
                     <div id="tab3" class="tab-content">
                         <div>
-                            <h2 class="mb-4">Add category</h2>
+                            <h2 class="mb-4">Add Category of Transaction</h2>
                             <form id="add-category-form"  class="add-category shadow rounded flex flex-row">
                                 <input type="text" name="categoryName" placeholder="Category name" class="add-expense-input-style">
                                 <button type="submit" class="add-expense-input-style bg-main-blue  text-white-500" style="border: none;">Add</button>
