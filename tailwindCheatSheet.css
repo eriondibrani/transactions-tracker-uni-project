@@ -104,9 +104,19 @@
 
 .bg-main-blue{
     background-color: #0e9fb2;
+    transition: ease-in-out .05s;
+}
+.bg-main-blue:hover{
+    background-color: #5d9ba3;
+    transition: ease-in-out .05s;
 }
 .bg-main-red{
     background-color: #df3d42;
+    transition: ease-in-out .05s;
+}
+.bg-main-red:hover{
+    background-color: #be6b6e;
+    transition: ease-in-out .05s;
 }
 .bg-main-greyed{
     background-color: #f5f5f4;
