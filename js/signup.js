@@ -5,9 +5,7 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
-
     const errorMessage = document.getElementById('error-message');
-
     errorMessage.textContent = '';
 
     if (password !== confirmPassword) {
@@ -15,15 +13,21 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
         return;
     }
 
-    const userId = generateGUID();
-
-    const user = { id: userId, email, username, password };
     let users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push(user);
+
+
+    if (users.some(user => user.email === email || user.username === username)) {
+        errorMessage.textContent = 'An account with this email or username already exists!';
+        return;
+    }
+
+    const userId = generateGUID();
+    const newUser = { id: userId, email, username, password };
+    users.push(newUser);
+
     localStorage.setItem('users', JSON.stringify(users));
 
-
-    window.location.href = 'login.html'; 
+    window.location.href = 'login.html';
 });
 
 function generateGUID() {
@@ -33,3 +37,6 @@ function generateGUID() {
         return v.toString(16);
     });
 }
+
+
+
