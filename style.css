@@ -99,31 +99,7 @@ h3{
 
     justify-content: space-around;
 }
-.bg-main-blue{
-    background-color: #0e9fb2;
-}
-.bg-main-red{
-    background-color: #df3d42;
-}
-.bg-main-greyed{
-    background-color: #f5f5f4;
-}
-.bg-main-black{
-    background-color: #23252f;
-}
 
-.text-main-blue{
-    color: #0e9fb2 !important;
-}
-.text-main-red{
-    color: #df3d42;
-}
-.text-main-greyed{
-    color: #f5f5f4;
-}
-.text-main-black{
-    color: #23252f;
-}
 
 #add-expense-form{
      background-color: #f5f5f4;
