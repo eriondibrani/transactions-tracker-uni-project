@@ -72,7 +72,7 @@ function createExpenseElement(expense) {
 const seeMoreHtmlButton = (expenses) => {
     console.log("see more")
     const button = document.createElement("button")
-    button.textContent = `See More (${expenses.length - 3})`
+    button.textContent = `See More (${expenses.length - 2})`
     button.addEventListener("click", () => {
         window.location.href = "items.html"
     })
